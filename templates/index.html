@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %} Accueil {% endblock %}
+
+{% block content %}  
+
+
+<div class="centerise">
+    <div class="row">
+        <div class="ticket-status nouveau">
+            <button onclick="location.href='#'">{{ new_tickets }} <br>nouveau</button>
+        </div>
+        <div class="ticket-status en-cours">
+            <button onclick="location.href='#'">{{ in_progress_tickets }}<br>en cours</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="ticket-status en-reparation">
+            <button onclick="location.href='#'">{{ in_repair_tickets }}<br>en réparation</button>
+        </div>
+        <div class="ticket-status clos">
+            <button onclick="location.href='#'">{{ closed_tickets }}<br>clos</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

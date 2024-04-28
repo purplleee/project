@@ -1,0 +1,10 @@
+# Ignore virtual environment
+Include/
+Scripts/
+Lib/
+
+# Ignore compiled Python files
+*.pyc
+
+# Ignore dependency directories
+__pycache__/
