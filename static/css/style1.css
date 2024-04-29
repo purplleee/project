@@ -120,3 +120,45 @@ body{
 .en-cours button { background-color: #28a745; }
 .en-reparation button { background-color: #ffc107; }
 .clos button { background-color: #dc3545; }
+
+
+
+
+/* Cree un ticket */
+
+.container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.btn-success {
+    background-color: #4CAF50;
+}
+
+.btn-secondary {
+    background-color: #c0c0c0;
+}
+
+.is-invalid {
+    border-color: #dc3545;
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.invalid-feedback {
+    display: block;
+    font-size: 80%;
+    color: #dc3545;
+    margin-top: .25rem;
+}

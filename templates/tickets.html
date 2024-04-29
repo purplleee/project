@@ -1,0 +1,31 @@
+<!-- tickets.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Tickets</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Catégorie</th>
+                <th>Type Matériel</th>
+                <!-- Add more headers if needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets_list %}
+            <tr>
+                <td>{{ ticket.titre }}</td>
+                <td>{{ ticket.description_ticket }}</td>
+                <td>{{ ticket.categorie }}</td>
+                <td>{{ ticket.type_materiel }}</td>
+                <!-- Add more ticket details if needed -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

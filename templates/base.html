@@ -20,7 +20,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="{{ url_for('index') }}">Accueil </a>
-      <a class="nav-item nav-link" href="#">Créer un ticket</a>
+      <a class="nav-item nav-link" href="{{ url_for('cree_ticket') }}">Créer un ticket</a>
       <a class="nav-item nav-link" href="#">matériel</a>
       <a class="nav-item nav-link" href="#">Foire aux questions</a>
     </div>
@@ -35,6 +35,16 @@
     </div>
   </div>
 </nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
