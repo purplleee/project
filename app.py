@@ -1,5 +1,5 @@
 from flask import Flask, render_template ,request, abort, url_for, flash, redirect
-from forms import TicketForm
+from forms import TicketForm ,MaterielForm
 import mysql.connector
 import os
 
@@ -33,7 +33,6 @@ def error500():
 
 @app.route('/')
 def index():
-    flash('This is a test message!', 'info')
     new_tickets = 5
     in_progress_tickets = 5
     in_repair_tickets = 5
@@ -91,6 +90,49 @@ def tickets():
         conn.close()
     return render_template('tickets.html', tickets_list=tickets_list)
 
+
+@app.route('/cree_mat/', methods=('GET', 'POST'))
+def cree_mat():
+    form = MaterielForm()
+    if form.validate_on_submit():
+        conn = get_db_connection()
+        try:
+            cursor = conn.cursor()
+            cursor.execute('''INSERT INTO materiel (`nom`, `marque`, `typeMat`) 
+                              VALUES (%s, %s, %s)''',
+                           (form.nom.data, form.marque.data, form.typeMat.data))
+            conn.commit()
+            flash('materiel créé ', 'success')
+            return redirect(url_for('materiel'))  
+        except mysql.connector.Error as err:
+            print(f"Error: {err}")
+            #flash('Failed to create course.', 'error')
+            #app.logger.error(f"Database Error: {err}")
+            flash(f'Échec de la création du materiel: {err}', 'error')
+            return render_template('creat_materiel.html', form=form)
+        finally:
+            cursor.close()
+            conn.close()
+        return redirect(url_for('materiel'))
+    return render_template('creat_materiel.html', form=form)
+
+
+@app.route('/materiel/')
+def materiel():
+    conn = get_db_connection()
+    materiel_list = []
+    try:
+        cursor = conn.cursor(dictionary=True)  # Ensure cursor returns dictionaries
+        cursor.execute("SELECT * FROM materiel")  # Adjusted to the 'tickets' table
+        materiel_list = cursor.fetchall()
+        app.logger.info(f"Fetched materiel: {materiel_list}")  # Log the fetched data
+    except mysql.connector.Error as err:
+        app.logger.error(f"Failed to fetch materiel: {err}")
+        flash(f"Error fetching materiel: {err}", 'error')
+    finally:
+        cursor.close()
+        conn.close()
+    return render_template('materiel.html', materiel_list=materiel_list)
 
 
 

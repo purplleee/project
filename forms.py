@@ -16,3 +16,12 @@ class TicketForm(FlaskForm):
                             ('thunder_bird', 'ThunderBird'), 
                             ('panne_soft', 'Panne Soft')])
     type_material = SelectField('Type Materiel', choices=[('panne_soft', 'Panne Soft')])
+
+class MaterielForm(FlaskForm):
+    nom = StringField('Nom Materiel', validators=[InputRequired(), Length(min=10, max=100)])
+    marque = StringField('Marque Materiel', validators=[InputRequired(), Length(min=10, max=100)])
+    typeMat = SelectField('type Materiel', validators=[InputRequired()], choices=[
+                            ('imprimante', 'imprimante'),
+                            ('sourie', 'sourie'), 
+                            ('cable', 'cable'),
+                            ('ecran', 'ecran')])
