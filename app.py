@@ -98,9 +98,9 @@ def cree_mat():
         conn = get_db_connection()
         try:
             cursor = conn.cursor()
-            cursor.execute('''INSERT INTO materiel (`nom`, `marque`, `typeMat`) 
+            cursor.execute('''INSERT INTO materiel (`id_mat`, `marque`, `typeMat`) 
                               VALUES (%s, %s, %s)''',
-                           (form.nom.data, form.marque.data, form.typeMat.data))
+                           (form.id_mat.data, form.marque.data, form.typeMat.data))
             conn.commit()
             flash('materiel créé ', 'success')
             return redirect(url_for('materiel'))  

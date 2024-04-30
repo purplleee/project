@@ -6,16 +6,16 @@
     <form method="POST" action="{{ url_for('cree_mat') }}" novalidate>
         {{ form.hidden_tag() }} {{ form.csrf_token }}
         <div class="form-group">
-            {{ form.nom.label(class="form-control-label") }}
-            {% if form.nom.errors %}
-                {{ form.nom(class="form-control is-invalid") }}
+            {{ form.id_mat.label(class="form-control-label") }}
+            {% if form.id_mat.errors %}
+                {{ form.id_mat(class="form-control is-invalid") }}
                 <div class="invalid-feedback">
-                    {% for error in form.nom.errors %}
+                    {% for error in form.id_mat.errors %}
                         {{ error }}
                     {% endfor %}
                 </div>
             {% else %}
-                {{ form.nom(class="form-control") }}
+                {{ form.id_mat(class="form-control") }}
             {% endif %}
         </div>
         
