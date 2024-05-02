@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container mt-5">
     <h2 class="mb-4">Modifier un ticket</h2>
-    <form method="POST" action="{{ url_for('update_ticket', ticket_id=ticket.id_ticket) }}" novalidate>
+    <form method="POST" action="{{ url_for('employee.update_ticket', ticket_id=ticket.id_ticket) }}" novalidate>
         {{ form.hidden_tag() }}
         {{ form.csrf_token }}
         
