@@ -41,7 +41,7 @@ def cree_ticket():
             db.session.add(new_ticket)
             db.session.commit()
             flash('Ticket créé avec succès! Statut: nouveau', 'success')
-            return redirect(url_for('view_tickets_by_status', status='nouveau'))
+            return redirect(url_for('employee.view_tickets_by_status', status='nouveau'))
         except Exception as e:
             db.session.rollback()  # Roll back the transaction if there's an error
             flash(f'Erreur lors de la création du ticket: {str(e)}', 'error')
@@ -79,7 +79,7 @@ def cree_mat():
             db.session.add(new_materiel)
             db.session.commit()
             flash('Matériel créé avec succès!', 'success')
-            return redirect(url_for('materiel'))
+            return redirect(url_for('employee.materiel'))
         except Exception as e:
             db.session.rollback()
             flash(f'Erreur lors de la création du matériel: {str(e)}', 'error')
