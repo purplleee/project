@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from flask import Flask, render_template, request, abort, url_for, flash, redirect
+from flask import Flask, render_template, request, url_for, flash, redirect
 from ...models.models import Ticket , Materiel
 from ...forms import TicketForm, MaterielForm
 import uuid
