@@ -1,4 +1,5 @@
 from uwu.database import db
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 class Ticket(db.Model):
@@ -19,11 +20,24 @@ class Materiel(db.Model):
 
 
 
-class User(UserMixin):
-    def __init__(self, id, roles):
-        self.id = id
-        self.active_role = roles[0]  
+class User(db.Model, UserMixin):
+    __tablename__ = 'user'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), unique=True, index=True)
+    password_hash = db.Column(db.String(255), nullable=False)
+    roles = db.Column(db.String(15), nullable=False)  
+
+    def __init__(self, username, roles):
+        self.username = username
         self.roles = roles
+        self.active_role = roles[0]
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     def switch_role(self, new_role):
         if new_role in self.roles:
