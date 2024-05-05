@@ -14,10 +14,12 @@ def create_app(config_class=DevelopmentConfig):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
-    # Configure session cookies
-    app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'  # Can also be 'None' if necessary
-    if app.config['SESSION_COOKIE_SAMESITE'] == 'None':
-        app.config['SESSION_COOKIE_SECURE'] = True
+    # configure session cookies
+    app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+    app.config['SESSION_COOKIE_SECURE'] = True  
+    app.config['SESSION_COOKIE_HTTPONLY'] = True  
+
+
 
     # Database setup
     db.init_app(app)
