@@ -23,3 +23,17 @@ def index():
                            in_repair_tickets=in_repair_tickets,
                            closed_tickets=closed_tickets)
 
+@super_admin_bp.route('/users/')
+@login_required
+def users():
+    return "heyyyyyyyyyyyy"
+
+
+@super_admin_bp.route('/stats/')
+@login_required
+def stats():
+    return "herrrrrrrrr"
+
+
+
+

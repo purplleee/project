@@ -35,3 +35,13 @@ def view_tickets_by_status(status):
         return render_template('tickets.html', tickets_list=[], status=status)
 
 
+@admin_bp.route('/users/')
+@login_required
+def users():
+    return "heyyyyyyyyyyyy"
+
+
+@admin_bp.route('/organigramme/')
+@login_required
+def organigramme():
+    return "organigramme"
