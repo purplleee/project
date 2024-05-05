@@ -4,6 +4,7 @@ from ...forms import TicketForm, MaterielForm
 import uuid
 from uwu.database import db
 from flask_login import login_required
+from uwu.models import Ticket, Materiel, User
 
 super_admin_bp = Blueprint('super_admin', __name__)
 
@@ -25,8 +26,9 @@ def index():
 
 @super_admin_bp.route('/users/')
 @login_required
-def users():
-    return "heyyyyyyyyyyyy"
+def super_admin_users():
+    users = User.query.all()  # Assuming super_admins can see everyone
+    return render_template('users.html', users=users, role='super_admin')
 
 
 @super_admin_bp.route('/stats/')

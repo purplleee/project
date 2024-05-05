@@ -27,12 +27,12 @@
     <div class="navbar-nav">
       {% if 'super_admin' in current_user.roles %}
         <a class="nav-item nav-link" href="{{ url_for('super_admin.index') }}">Accueil</a>
-        <a class="nav-item nav-link" href="{{ url_for('super_admin.users') }}">Users</a>
+        <a class="nav-item nav-link" href="{{ url_for('super_admin.super_admin_users') }}">Users</a>
         <a class="nav-item nav-link" href="{{ url_for('super_admin.stats') }}">Stats</a>
         <a class="nav-item nav-link" href="#">FAQ</a>
       {% elif 'admin' in current_user.roles %}
         <a class="nav-item nav-link" href="{{ url_for('admin.index') }}">Accueil</a>
-        <a class="nav-item nav-link" href="{{ url_for('admin.users') }}">Users</a>
+        <a class="nav-item nav-link" href="{{ url_for('admin.admin_users') }}">Users</a>
         <a class="nav-item nav-link" href="{{ url_for('admin.organigramme') }}">Organigramme</a>
         <a class="nav-item nav-link" href="#">FAQ</a>
       {% else %}

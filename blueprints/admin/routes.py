@@ -4,6 +4,8 @@ from ...forms import TicketForm, MaterielForm
 import uuid
 from uwu.database import db
 from flask_login import login_required
+from uwu.models import Ticket, Materiel, User
+from flask_login import current_user
 
 admin_bp = Blueprint('admin', __name__)
 
@@ -37,8 +39,12 @@ def view_tickets_by_status(status):
 
 @admin_bp.route('/users/')
 @login_required
-def users():
-    return "heyyyyyyyyyyyy"
+def admin_users():
+    # Exclude super_admins if the user is an admin
+    if 'admin' in current_user.roles:
+        users = User.query.filter(User.roles != 'super_admin').all()
+    return render_template('users.html', users=users, role='admin')
+
 
 
 @admin_bp.route('/organigramme/')
